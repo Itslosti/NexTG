@@ -24,7 +24,7 @@ in a single window.
 
 ### Settings
 
-![NexTG Desktop — Settings](Setting.PNG)
+![NexTG Desktop — Settings](Settiing.PNG)
 
 ---
 
