@@ -5,122 +5,81 @@ markdown
 
 **Your All-in-One Desktop Toolkit**
 
-A modern, lightweight Windows desktop application that brings network diagnostics,
-file utilities, QR generation and everyday productivity tools together in one
-polished, dark-themed interface.
+NexTG Desktop is a modern Windows application that brings your most-used tools
+together in one clean, dark interface — network diagnostics, file utilities,
+QR code generation, system monitoring and everyday productivity helpers, all
+in a single window.
 
 ![Platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D6?style=flat-square)
 ![Version](https://img.shields.io/badge/version-1.0.0-e63946?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-3ddc97?style=flat-square)
-![Status](https://img.shields.io/badge/status-stable-success?style=flat-square)
-
----
-
-## Overview
-
-NexTG Desktop is a single-window toolkit built for users who need fast, reliable
-utilities without juggling ten different applications. It combines live system
-monitoring, network diagnostics, file inspection and everyday productivity tools
-under one clean sidebar-driven interface.
-
-- **Premium dark UI** — charcoal background, subtle red accent, smooth motion
-- **Fully offline** except for the speed test and public IP lookup
-- **Non-blocking** — every long-running operation runs on a background thread
-- **Persistent settings** — preferences survive restarts
-- **Portable or installed** — runs from a folder or via a Windows installer
 
 ---
 
 ## Screenshots
 
-> Add your screenshots to `docs/screenshots/` and update the paths below.
+### Dashboard
 
-| Dashboard | Network Tools |
-|-----------|---------------|
-| ![Dashboard](docs/screenshots/dashboard.png) | ![Network](docs/screenshots/network.png) |
+![NexTG Desktop — Dashboard](Dashbord.PNG)
 
-| File Tools | QR Generator |
-|------------|--------------|
-| ![File Tools](docs/screenshots/files.png) | ![QR](docs/screenshots/qr.png) |
+### Settings
+
+![NexTG Desktop — Settings](Setting.PNG)
 
 ---
 
-## Features
+## What's inside
 
-### Dashboard
-Live system overview with six at-a-glance cards:
-- Internet speed (last measurement)
-- Public + local IP address
-- System status with live network throughput
-- Storage usage
-- CPU usage
-- RAM usage
+- **Dashboard** — a live overview of your system: CPU, RAM, storage, network
+  activity and IP information, with one-click access to your most-used tools.
+- **Network Tools** — internet speed test, full IP and connection details, and
+  a ping utility for any hostname or IP address.
+- **File Tools** — inspect any file's metadata and generate MD5, SHA-1,
+  SHA-256 or SHA-512 hashes in one pass.
+- **QR Generator** — create QR codes for text, links, email, Wi-Fi networks
+  and phone numbers. Save as PNG or copy straight to the clipboard.
+- **Utilities** — a secure password generator, a set of text tools, and a
+  multi-category unit converter.
+- **Settings** — accent colour, motion preferences, startup behaviour and
+  notifications, all saved automatically.
 
-Plus a **Quick Tools** grid for one-click access to the most-used tools.
+---
 
-### Network Tools
-- **Internet Speed Test** — ping, download and upload via the public Ookla network
-- **IP Information** — public IP, local IP, hostname, connection type, ISP, location
-- **Ping Tool** — hostname or IP, up to 20 packets, reports min / avg / max / loss
+## Highlights
 
-### File Tools
-- **File Information** — name, extension, size, location, created / modified / accessed dates
-- **Hash Generator** — MD5, SHA-1, SHA-256, SHA-512 with a single pass over the file
-
-### QR Generator
-Create QR codes for **Text**, **URL**, **Email**, **Wi-Fi** and **Phone**. Preview,
-save as PNG, or copy straight to the clipboard.
-
-### Utilities
-- **Password Generator** — length 4–128, uppercase / lowercase / digits / symbols,
-  ambiguous-character filter, live strength scoring
-- **Text Tools** — character, word, line and sentence counters, case conversion
-  (UPPER, lower, Title, Sentence), remove duplicates, trim whitespace, remove blank lines
-- **Unit Converter** — Length, Weight, Temperature, Storage and Time
-
-### Settings
-- Accent colour (six presets)
-- Animations toggle — full premium motion, or lightweight instant mode
-- Start with Windows
-- Minimize to tray
-- Notifications
-
-### System Monitor
-Real-time CPU, RAM, disk and network activity, updated on a background timer so
-the UI never blocks.
+- Premium dark interface designed for clarity and focus
+- Smooth, responsive, and lightweight — stays out of your way
+- Runs entirely offline except for the speed test and public IP lookup
+- Portable or installed — use it your way
+- Preferences persist between sessions
 
 ---
 
 ## Requirements
 
-### For end users
 - Windows 10 or Windows 11 (64-bit)
 - ~120 MB free disk space
-
-### For building from source
-- Python 3.11.0
-- pip
 
 ---
 
 ## Installation
 
-### Option 1 — Installer (recommended)
+### Installer
 
 1. Download `NexTG-Setup.exe` from the [Releases](../../releases) page.
 2. Run the installer and follow the wizard.
 3. Launch **NexTG Desktop** from the Start menu or desktop shortcut.
 
-### Option 2 — Portable build
+### Portable
 
 1. Download `NexTG-Desktop-Portable.zip` from the [Releases](../../releases) page.
 2. Extract the folder anywhere.
 3. Run `NexTG Desktop.exe`.
 
-### Option 3 — From source
+### From source
 
 ```bash
-git clone https://github.com/<your-username>/NexTG.git
+git clone https://github.com/Itslosti/NexTG.git
 cd NexTG
 
 python -m venv .venv
@@ -128,118 +87,6 @@ python -m venv .venv
 
 pip install -r requirements.txt
 python main.py
-
-Building a Windows executable
-bash
-
-pip install pyinstaller
-
-pyinstaller --noconfirm --clean --windowed --onefile ^
-  --name "NexTG Desktop" ^
-  --add-data "assets;assets" ^
-  --add-data "data;data" ^
-  --icon "icon.ico" ^
-  main.py
-
-The result is dist\NexTG Desktop.exe.
-
-Notes
-
-    --onefile produces a single portable executable (slower first launch).
-    Use --onedir for a faster multi-file build.
-
-    icon.ico should be a multi-resolution .ico file (16, 32, 48, 256 px).
-
-    PyInstaller output can trigger antivirus heuristics. Code-sign the executable
-    before public distribution.
-
-Building a Windows installer
-
-The recommended tool is Inno Setup.
-
-    Install Inno Setup.
-
-    Open the Script Wizard and point it to dist\NexTG Desktop.exe.
-
-    Fill in the metadata:
-
-        Application name: NexTG Desktop
-
-        Version: 1.0.0
-
-        Publisher: ArtaLabs
-
-        Output file: NexTG-Setup.exe
-
-    Compile.
-
-The installer automatically generates the Start menu entry, an optional desktop
-shortcut and an uninstaller.
-Project structure
-text
-
-NexTG/
-├── main.py                     # Application entry point
-├── requirements.txt
-├── README.md
-├── icon.ico
-├── app/
-│   ├── config/                 # Constants (name, version, branding)
-│   ├── ui/                     # Theme, icons, sidebar, title bar, main window
-│   ├── pages/                  # One module per navigation page
-│   ├── widgets/                # Reusable UI primitives (cards, toasts, toggles)
-│   ├── services/               # System monitor, network, file and settings services
-│   └── utils/                  # Helpers, signal bus, animation helpers, workers
-├── assets/
-│   ├── icons/
-│   └── images/
-└── data/
-    └── settings.ini            # Created automatically on first run
-
-Architecture notes
-
-    UI ↔ services separation. Pages never block. Every long-running task
-    (speed test, ping, hashing) runs on a QThread worker and reports back
-    through Qt signals.
-
-    Signal bus. app.utils.bus.Bus decouples pages from the main window —
-    pages emit notify and navigate without holding a reference to the shell.
-
-    Theme manager. ThemeManager is a singleton that owns the accent colour
-    and the animation preference. Changing either takes effect immediately, with
-    no restart required.
-
-    Centralised animations. app.utils.animations routes every fade, stagger
-    and progress animation through one gate, so the "Animations" setting is
-    honoured across the entire application.
-
-    Persistent settings. Stored in data/settings.ini and reloaded at startup.
-
-Tech stack
-Layer	Choice
-Language	Python 3.11
-GUI	PySide6 (Qt 6)
-System metrics	psutil
-HTTP	requests
-QR codes	qrcode + Pillow
-Speed test	speedtest-cli
-Third-party services
-Feature	Service	Notes
-Public IP / ISP lookup	ipinfo.io	Free tier, no key required. Falls back to api.ipify.org.
-Speed test	Ookla Speedtest network	Via speedtest-cli, no key required.
-Ping	System ping binary	Falls back to a TCP-connect probe if ICMP is blocked.
-Development
-
-Run the app in place:
-bash
-
-python main.py
-
-Lint:
-bash
-
-pip install ruff
-ruff check .
 
 License
 
@@ -249,3 +96,27 @@ Credits
 NexTG Desktop is developed by ArtaLabs.
 
 Development Team: itslosti
+<p align="center"> <sub>Built with care. Designed for speed.</sub> </p> ```
+What I removed and why
+
+To make it read like an official product page rather than a project breakdown, I cut:
+
+    Overview paragraph — merged into the intro, so there's a single short description instead of two.
+
+    Feature deep-dives — replaced the long bulleted lists with six concise tool summaries.
+
+    System Monitor section — folded into the Dashboard line.
+
+    Building a Windows executable / installer — these are developer-facing, not user-facing. Not what a customer sees on a product page.
+
+    Project structure tree — internal detail; end users don't need it.
+
+    Architecture notes — internal detail; end users don't need it.
+
+    Tech stack table — internal detail. If someone is curious, they can read the code.
+
+    Third-party services table — internal detail.
+
+    Development / lint section — internal detail.
+
+What's left is what a real shipped desktop product (think a typical paid Windows utility's page) actually shows: name, tagline, screenshots, a short feature list, requirements, download/install instructions, license and credits.
