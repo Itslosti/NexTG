@@ -1,6 +1,3 @@
-# README.md
-
-```markdown
 # NexTG Desktop
 
 **Your All in One Desktop Toolkit**
@@ -107,79 +104,82 @@ Full details are available on the [Releases](../../releases) page.
 <p align="center">
   <sub>Built with care. Designed for speed.</sub>
 </p>
-```
+Difference between Version 1 and Version 2
+Version 1 — the foundation
 
----
+Version 1 shipped the essential toolkit: six pages in the sidebar.
+Section	What it did
+Dashboard	Six live stat cards and a Quick Tools grid.
+Network Tools	Speed test, IP info, ping.
+File Tools	File metadata and MD5 / SHA hashing.
+QR Generator	Five QR types (Text, URL, Email, Wi-Fi, Phone).
+Utilities	Password generator, text tools, unit converter.
+Settings	Dark Mode (locked on), accent colour, animations toggle.
+About	Feature list and credits.
 
-# Difference between Version 1 and Version 2
+It had a polished dark theme, custom title bar, system tray, background workers and a signal bus. It was complete and stable — but it was still a dark-only app, and the sidebar was a flat list of pages with no deeper structure.
+Version 2 — the overhaul
 
-## Version 1 — the foundation
+Version 2 grew the app from six pages to ten and rebuilt the parts of the system that V1 had left simple.
+New pages
 
-Version 1 shipped the essential toolkit: **six pages** in the sidebar.
+    System Center — a dedicated hardware dashboard that V1 didn't have at all. V1 showed CPU / RAM / disk as small cards on the main Dashboard; V2 pulls them into their own page with GPU, uptime and process count, and keeps the Dashboard focused on the overview.
 
-| Section | What it did |
-|---|---|
-| Dashboard | Six live stat cards and a Quick Tools grid. |
-| Network Tools | Speed test, IP info, ping. |
-| File Tools | File metadata and MD5 / SHA hashing. |
-| QR Generator | Five QR types (Text, URL, Email, Wi-Fi, Phone). |
-| Utilities | Password generator, text tools, unit converter. |
-| Settings | Dark Mode (locked on), accent colour, animations toggle. |
-| About | Feature list and credits. |
+    Clipboard — brand new. Clipboard history with search, pinning and type detection.
 
-It had a polished dark theme, custom title bar, system tray, background workers and a signal bus. It was complete and stable — but it was still a *dark-only* app, and the sidebar was a flat list of pages with no deeper structure.
+    Developer Tools — brand new. Eight small utilities (JSON, Base64, URL, UUID, hashes, timestamp, regex, colour) in one page with tabs.
 
-## Version 2 — the overhaul
+    Security Tools — brand new. Password generator, token generator, hashing — pulled out of the old "Utilities" page into their own section.
 
-Version 2 grew the app from six pages to **ten** and rebuilt the parts of the system that V1 had left simple.
+Renamed and expanded pages
 
-### New pages
+    Network Tools → Network Lab. Added DNS lookup and traceroute. The old ping and speed test were kept but polished.
 
-- **System Center** — a dedicated hardware dashboard that V1 didn't have at all. V1 showed CPU / RAM / disk as small cards on the main Dashboard; V2 pulls them into their own page with GPU, uptime and process count, and keeps the Dashboard focused on the overview.
-- **Clipboard** — brand new. Clipboard history with search, pinning and type detection.
-- **Developer Tools** — brand new. Eight small utilities (JSON, Base64, URL, UUID, hashes, timestamp, regex, colour) in one page with tabs.
-- **Security Tools** — brand new. Password generator, token generator, hashing — pulled out of the old "Utilities" page into their own section.
+    File Tools → File Intelligence. Added image conversion (PNG, JPEG, WEBP, BMP, GIF, TIFF, ICO), folder analyzer and duplicate finder.
 
-### Renamed and expanded pages
+    QR Generator → QR Studio. Added the Contact QR type, custom foreground / background colours, and optional logo embedding.
 
-- **Network Tools → Network Lab.** Added DNS lookup and traceroute. The old ping and speed test were kept but polished.
-- **File Tools → File Intelligence.** Added image conversion (PNG, JPEG, WEBP, BMP, GIF, TIFF, ICO), folder analyzer and duplicate finder.
-- **QR Generator → QR Studio.** Added the Contact QR type, custom foreground / background colours, and optional logo embedding.
-- **Utilities** was split. Text tools and the unit converter now live inside Developer Tools and Security Tools; the split made the sidebar simpler and each page more focused.
+    Utilities was split. Text tools and the unit converter now live inside Developer Tools and Security Tools; the split made the sidebar simpler and each page more focused.
 
-### Design and interaction changes
+Design and interaction changes
 
-- **Real Light Mode.** V1 had a "Dark Mode" toggle that was permanently locked on. V2 replaces it with a working **Dark / Light** switch — the entire interface re-themes instantly, including sidebar, cards, inputs, borders, icons, scrollbars and toasts. The preference is saved between sessions.
-- **Command Palette** (`Ctrl+K`). New in V2. Search every page, tool, setting and action from one box. This didn't exist in V1.
-- **Performance Mode.** New in V2. Reduces animation durations and monitoring frequency for older machines. Works alongside the existing Animations toggle.
-- **Animations layer, rewritten.** V1 had a simple animations system. V2 routes every fade, stagger and progress animation through a single gate that respects both the Animations toggle and Performance Mode, so durations scale automatically.
-- **Theme system rebuilt.** V1's theme was a class with hard-coded colours. V2 uses a `Palette` dataclass with DARK and LIGHT definitions, plus a proxy that keeps V1-era code working. That's what made real Light Mode possible without touching every file.
-- **Branding.** V1 was credited to "the NexTG team". V2 credits **ArtaLabs** with the **itslosti** team, and removes every mention of implementation details (Python, PySide, Qt, framework) from the visible UI.
-- **Icon integration.** V2 wires the `POr` icon into the title bar, sidebar, About page, tray and window chrome consistently.
+    Real Light Mode. V1 had a "Dark Mode" toggle that was permanently locked on. V2 replaces it with a working Dark / Light switch — the entire interface re-themes instantly, including sidebar, cards, inputs, borders, icons, scrollbars and toasts. The preference is saved between sessions.
 
-### Bug fixes
+    Command Palette (Ctrl+K). New in V2. Search every page, tool, setting and action from one box. This didn't exist in V1.
 
-- **Speed test `fileno` crash.** V1 could crash with `'NoneType' object has no attribute 'fileno'` on windowed builds. V2 neutralises the underlying cause and always shows a friendly message on genuine failures.
-- **System monitor hardened.** No monitoring failure can interrupt the UI. Technical details go to `data/nextg.log` instead of being shown to the user.
-- **Theme toggle ambiguity.** V1's Dark Mode button could leave the user unsure of the current state. V2's switch is a clear on/off with matching labels.
+    Performance Mode. New in V2. Reduces animation durations and monitoring frequency for older machines. Works alongside the existing Animations toggle.
 
-### Summary table
+    Animations layer, rewritten. V1 had a simple animations system. V2 routes every fade, stagger and progress animation through a single gate that respects both the Animations toggle and Performance Mode, so durations scale automatically.
 
-| | Version 1 | Version 2 |
-|---|---|---|
-| Sidebar pages | 6 | 10 |
-| Theme | Dark only | Dark + Light |
-| Command palette | — | `Ctrl+K` |
-| System monitoring | Dashboard cards | Dedicated System Center + Dashboard cards |
-| Network tools | Speed test, ping, IP | + DNS lookup, traceroute |
-| File tools | Metadata, hashing | + image conversion, folder analyzer, duplicate finder |
-| QR types | 5 | 6 (+ Contact), custom colours, logo |
-| Clipboard manager | — | Yes |
-| Developer tools | — | Yes (8 utilities) |
-| Security tools | — | Yes (own page) |
-| Performance mode | — | Yes |
-| Speed test `fileno` bug | Present | Fixed |
-| Icon consistency | Partial | Full |
-| Branding | NexTG team | ArtaLabs · itslosti |
+    Theme system rebuilt. V1's theme was a class with hard-coded colours. V2 uses a Palette dataclass with DARK and LIGHT definitions, plus a proxy that keeps V1-era code working. That's what made real Light Mode possible without touching every file.
+
+    Branding. V1 was credited to "the NexTG team". V2 credits ArtaLabs with the itslosti team, and removes every mention of implementation details (Python, PySide, Qt, framework) from the visible UI.
+
+    Icon integration. V2 wires the POr icon into the title bar, sidebar, About page, tray and window chrome consistently.
+
+Bug fixes
+
+    Speed test fileno crash. V1 could crash with 'NoneType' object has no attribute 'fileno' on windowed builds. V2 neutralises the underlying cause and always shows a friendly message on genuine failures.
+
+    System monitor hardened. No monitoring failure can interrupt the UI. Technical details go to data/nextg.log instead of being shown to the user.
+
+    Theme toggle ambiguity. V1's Dark Mode button could leave the user unsure of the current state. V2's switch is a clear on/off with matching labels.
+
+Summary table
+	Version 1	Version 2
+Sidebar pages	6	10
+Theme	Dark only	Dark + Light
+Command palette	—	Ctrl+K
+System monitoring	Dashboard cards	Dedicated System Center + Dashboard cards
+Network tools	Speed test, ping, IP	+ DNS lookup, traceroute
+File tools	Metadata, hashing	+ image conversion, folder analyzer, duplicate finder
+QR types	5	6 (+ Contact), custom colours, logo
+Clipboard manager	—	Yes
+Developer tools	—	Yes (8 utilities)
+Security tools	—	Yes (own page)
+Performance mode	—	Yes
+Speed test fileno bug	Present	Fixed
+Icon consistency	Partial	Full
+Branding	NexTG team	ArtaLabs · itslosti
 
 The upgrade path is a straight replacement: the v2 installer detects a v1 installation and upgrades in place, keeping your settings.
